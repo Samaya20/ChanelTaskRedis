@@ -1,0 +1,27 @@
+﻿@model IEnumerable<YourProjectName.Models.Channel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <form asp-controller="Home" asp-action="CreateChannel" method="post">
+        <input type="text" name="channelName" placeholder="Kanal Adı" />
+        <button type="submit">Create new chanel</button>
+    </form>
+</div>
+
+<ul>
+    @foreach (var channel in Model)
+    {
+        <li>
+            @channel.Name
+            <ul>
+                @foreach (var subscriber in channel.Subscribers)
+                {
+                    <li>@subscriber</li>
+                }
+            </ul>
+        </li>
+    }
+</ul>
